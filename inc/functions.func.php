@@ -73,11 +73,11 @@ class PodcastFeedEditor {
 
     public function render($output_file="") {
         header('Content-Type: application/rss+xml; charset=utf-8');
+        $lastPubDate = $this->items->item(0)->getElementsByTagName('pubDate')->item(0)->textContent;
+        if($lastPubDate)
+            header('Last-Modified: '. $lastPubDate);
         return $this->save($output_file);
     }
-
-
-        
 
 }
 
